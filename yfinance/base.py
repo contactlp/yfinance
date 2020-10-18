@@ -280,7 +280,7 @@ class TickerBase():
         data = utils.get_json(url, proxy)
 
         # holders
-        url = "{}/{}".format(self._scrape_url, self.ticker)
+        #url = "{}/{}".format(self._scrape_url, self.ticker)
         holders = _pd.read_html(url+'/holders')
         self._major_holders = holders[0]
         if len(holders) > 1:
@@ -346,8 +346,8 @@ class TickerBase():
             rec.set_index('earningsDate', inplace=True)
             rec.index.name = 'Date'
             rec.columns = utils.camel2title(rec.columns)
-            self._recommendations = rec[[
-                'Firm', 'To Grade', 'From Grade', 'Action']].sort_index()
+            self._recommendations = rec[[:
+                                         'Firm', 'To Grade', 'From Grade', 'Action']].sort_index()
         except Exception:
             pass
 
